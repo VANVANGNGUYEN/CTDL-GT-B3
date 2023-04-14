@@ -1,0 +1,54 @@
+#include <stdio.h>
+void swap(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+int partition(int arr[], int low, int high) {
+    int pivot = arr[high];  // Chọn pivot là phần tử cuối cùng của mảng
+    int i = low - 1;        // Khởi tạo chỉ số i là phần tử đầu tiên của mảng
+    for (int j = low; j < high; j++) {
+        // Nếu phần tử hiện tại nhỏ hơn hoặc bằng pivot
+        if (arr[j] <= pivot) {
+            i++;
+            swap(&arr[i], &arr[j]);  // Hoán đổi phần tử arr[i] và arr[j]
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);  // Hoán đổi pivot với phần tử arr[i + 1]
+    return i + 1;                   // Trả về chỉ số của pivot
+}
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        int pivotIndex = partition(arr, low, high);  // Tìm pivot
+        quickSort(arr, low, pivotIndex - 1);         // Đệ quy sắp xếp mảng trước pivot
+        quickSort(arr, pivotIndex + 1, high);        // Đệ quy sắp xếp mảng sau pivot
+    }
+}
+int main() {
+    int arr[] = { 41, 23, 4, 14, 56, 1 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    printf("Mang truoc khi sap xep: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    quickSort(arr, 0, n - 1);
+    printf("\nMang sau khi sap xep: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
