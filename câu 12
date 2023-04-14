@@ -1,0 +1,20 @@
+# CTDL-GT-B3
+#include <stdio.h>
+int countPositiveRecursive(float arr[], int size) {
+    if (size == 0) {
+        return 0;
+    }
+    if (arr[size - 1] > 0) {
+        return 1 + countPositiveRecursive(arr, size - 1);
+    } else {
+        return countPositiveRecursive(arr, size - 1);
+    }
+}
+int main() {
+    float arr[] = {-1.5, 2.0, 0, 3.7, -4.2, 5.1, -6.3, 7.2};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int count = countPositiveRecursive(arr, size);
+    printf("So luong gia tri duong trong mang la: %d\n", count);
+    return 0;
+}
+
