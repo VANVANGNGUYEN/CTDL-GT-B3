@@ -1,0 +1,51 @@
+# CTDL-GT-B3
+#include <stdio.h> // sắp xếp cây
+void swap(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+void heapify(int arr[], int n, int i) {
+    int largest = i;    // Khởi tạo largest là gốc của cây
+    int left = 2 * i + 1;    // Chỉ số con trái của i
+    int right = 2 * i + 2;   // Chỉ số con phải của i
+    // Kiểm tra nếu con trái lớn hơn gốc
+    if (left < n && arr[left] > arr[largest]) {
+        largest = left;
+    }
+    // Kiểm tra nếu con phải lớn hơn gốc
+    if (right < n && arr[right] > arr[largest]) {
+        largest = right;
+    }
+    // Nếu largest khác i, thì hoán đổi và tiếp tục heapify
+    if (largest != i) {
+        swap(&arr[i], &arr[largest]);
+        heapify(arr, n, largest);
+    }
+}
+void heapSort(int arr[], int n) {
+    // Xây dựng heap (sắp xếp đệ quy từ nửa phải sang nửa trái của mảng)
+    for (int i = n / 2 - 1; i >= 0; i--) {
+        heapify(arr, n, i);
+    }
+
+    // Đưa phần tử lớn nhất (gốc của heap) về cuối mảng và heapify lại mảng đang xét
+    for (int i = n - 1; i > 0; i--) {
+        swap(&arr[0], &arr[i]);
+        heapify(arr, i, 0);
+    }
+}
+int main() {
+    int arr[] = { 41, 23, 4, 14, 56, 1 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    printf("Mang truoc khi sap xep: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    heapSort(arr, n);
+    printf("\nMang sau khi sap xep: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    return 0;
+}
