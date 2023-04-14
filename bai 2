@@ -1,0 +1,25 @@
+: #include <stdio.h>
+// Hàm tìm kiếm tuyến tính
+int linearSearch(int arr[], int n, int x) {
+    for (int i = 0; i < n; i++) {
+        // Nếu phần tử trong mảng là giá trị cần tìm, trả về vị trí của nó
+        if (arr[i] == x) {
+            return i;
+        }
+    }
+    // Nếu không tìm thấy giá trị trong mảng, trả về -1
+    return -1;
+}
+int main() {
+    int arr[] = {2, 3, 4, 10, 40};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int x = 10;
+    int result = linearSearch(arr, n, x);
+    if (result == -1) {
+        printf("Khong tim thay gia tri %d trong mang.\n", x);
+    } else {
+        printf("Gia tri %d co tai vi tri %d trong mang.\n", x, result);
+    }
+    return 0;
+}		
+
