@@ -1,0 +1,53 @@
+# CTDL-GT-B3
+#include <stdio.h> // sắp xếp hàng đợi
+#define MAX_SIZE 10
+int queue[MAX_SIZE];
+int front = 0;
+int rear = -1;
+int itemCount = 0;
+void enqueue(int value) {
+    if (rear == MAX_SIZE - 1) {
+        printf("Queue is full. Cannot enqueue element.\n");
+        return;
+    }
+    rear++;
+    queue[rear] = value;
+    itemCount++;
+}
+int dequeue() {
+    if (itemCount == 0) {
+        printf("Queue is empty. Cannot dequeue element.\n");
+        return -1;
+    }
+    int dequeuedElement = queue[front];
+    front++;
+    itemCount--;
+    return dequeuedElement;
+}
+void printQueue() {
+    printf("Queue elements: ");
+    for (int i = front; i <= rear; i++) {
+        printf("%d ", queue[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int elements[] = { 41, 23, 4, 14, 56, 1 };
+    int numElements = sizeof(elements) / sizeof(elements[0]);
+    printf("Enqueuing elements into queue: ");
+    for (int i = 0; i < numElements; i++) {
+        enqueue(elements[i]);
+        printf("%d ", elements[i]);
+    }
+    printf("\n");
+    printf("Enqueuing element 55 into queue.\n");
+    enqueue(55);
+    printf("Dequeueing element 23 from queue.\n");
+    int dequeuedValue = dequeue();
+    if (dequeuedValue != -1) {
+        printf("Dequeued element: %d\n", dequeuedValue);
+    }
+    printQueue();
+    return 0;
+}
