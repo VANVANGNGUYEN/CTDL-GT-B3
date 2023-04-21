@@ -1,0 +1,18 @@
+# CTDL-GT-B3
+#include <stdio.h>
+void printArrayRecursive(int arr[], int size) {
+    if (size == 0) {
+        return;
+    } else {
+        printArrayRecursive(arr, size - 1);
+        printf("%d ", arr[size - 1]);
+    }
+}
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    printf("Mang: ");
+    printArrayRecursive(arr, size);
+    printf("\n");
+    return 0;
+}
