@@ -1,0 +1,20 @@
+# CTDL-GT-B3
+#include <stdio.h>
+// Hàm ð? quy tính t?ng các giá tr? trong m?ng
+float sumArray(float arr[], int n) {
+    // Trý?ng h?p cõ s?: n?u m?ng ch? có 1 ph?n t?
+    if (n == 1) {
+        return arr[0];  // Tr? v? giá tr? c?a ph?n t? ðó
+    }
+    // Trý?ng h?p ð? quy: tính t?ng các giá tr? trong m?ng t? ph?n t? th? 0 ð?n ph?n t? th? n-1,
+    // sau ðó c?ng v?i giá tr? c?a ph?n t? th? n-1
+    return arr[n-1] + sumArray(arr, n-1);
+}
+int main() {
+    float arr[] = {1, -2.0, 3, -4, 5, 6};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    // G?i hàm ð? quy ð? tính t?ng các giá tr? trong m?ng
+    float sum = sumArray(arr, n);
+    printf("Tong cac gia tri trong mang: %.2f\n", sum);
+    return 0;
+}
