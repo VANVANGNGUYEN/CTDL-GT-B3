@@ -1,0 +1,22 @@
+# CTDL-GT-B3
+#include <stdio.h>
+// Hàm ð? quy tính giai th?a c?a n
+unsigned long long int giaiThua(int n) {
+    // Ði?u ki?n d?ng c?a ð? quy
+    if (n == 1) {
+        return 1;
+    } else {
+        // N?u n chýa ð?t ð?n ði?u ki?n d?ng, ta ð? quy tính giai th?a c?a n-1
+        // và nhân k?t qu? v?i n ð? tính giai th?a c?a n
+        return n * giaiThua(n - 1);
+    }
+}
+int main() {
+    int n = 5; // Giá tr? n c?n tính giai th?a
+    // G?i hàm ð? quy tính giai th?a c?a n
+    unsigned long long int ketQua = giaiThua(n);
+    // In k?t qu? ra màn h?nh
+    printf("Giai thua cua %d la: %llu\n", n, ketQua);
+    return 0;
+}
+
