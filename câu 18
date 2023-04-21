@@ -1,0 +1,21 @@
+# CTDL-GT-B3
+#include <stdio.h>
+// Hàm ð? quy t?m giá tr? l?n nh?t trong m?ng
+float findMax(float arr[], int n) {
+    // Trý?ng h?p cõ s?: n?u m?ng ch? có 1 ph?n t?
+    if (n == 1) {
+        return arr[0];  // Tr? v? giá tr? c?a ph?n t? ðó
+    }
+    // Trý?ng h?p ð? quy: so sánh giá tr? c?a ph?n t? cu?i cùng c?a m?ng
+    // v?i giá tr? l?n nh?t c?a m?ng t? ph?n t? th? 0 ð?n ph?n t? th? n-1
+    float max = findMax(arr, n-1);
+    return (arr[n-1] > max) ? arr[n-1] : max;
+}
+int main() {
+    float arr[] = {3.5, 1.2, 6.7, 2.9, 9.4, 4.6};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    // G?i hàm ð? quy ð? t?m giá tr? l?n nh?t trong m?ng
+    float max = findMax(arr, n);
+    printf("Gia tri lon nhat trong mang la: %.2f\n", max);
+    return 0;
+}
