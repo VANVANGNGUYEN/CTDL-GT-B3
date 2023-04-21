@@ -1,0 +1,47 @@
+# CTDL-GT-B3
+#include <stdio.h>
+// Hàm ð?i ch? hai ph?n t? trong m?ng
+void swap(float* a, float* b) {
+    float t = *a;
+    *a = *b;
+    *b = t;
+}
+// Hàm ð? quy Quick Sort
+void quickSort(float arr[], int low, int high) {
+    if (low < high) {
+        // Ch?n ph?n t? ch?t là ph?n t? cu?i cùng c?a m?ng
+        float pivot = arr[high];
+        int i = low - 1;
+        // Phân ho?ch m?ng sao cho các ph?n t? nh? hõn ph?n t? ch?t
+        // ð?ng trý?c ph?n t? ch?t, và các ph?n t? l?n hõn ph?n t? ch?t
+        // ð?ng sau ph?n t? ch?t
+        for (int j = low; j < high; j++) {
+            if (arr[j] <= pivot) {
+                i++;
+                swap(&arr[i], &arr[j]);
+            }
+        }
+        // Ð?i ch? ph?n t? ch?t v?i ph?n t? sau ph?n t? cu?i cùng
+        swap(&arr[i+1], &arr[high]);
+        // Ti?p t?c ð? quy s?p x?p các ph?n t? bên trái và bên ph?i ph?n t? ch?t
+        quickSort(arr, low, i);
+        quickSort(arr, i+2, high);
+    }
+}
+int main() {
+    float arr[] = {3, 1, 6, 2, 9, 4};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Mang truoc khi sap xep: ");
+    for (int i = 0; i < n; i++) {
+        printf("%.2f ", arr[i]);
+    }
+    // G?i hàm ð? quy Quick Sort ð? s?p x?p m?ng
+    quickSort(arr, 0, n-1);
+    printf("\nMang sau khi sap xep: ");
+    for (int i = 0; i < n; i++) {
+        printf("%.2f ", arr[i]);
+    }
+    return 0;
+}
+
